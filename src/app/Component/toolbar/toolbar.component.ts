@@ -1,5 +1,10 @@
+import { CartService } from 'src/app/Service/cart.service';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { BookService } from 'src/app/Service/book.service';
+import { TokenService } from 'src/app/Service/token.service';
+import { Router } from '@angular/router';
+import { WishlistService } from 'src/app/Service/wishlist.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-toolbar',
@@ -8,25 +13,105 @@ import { BookService } from 'src/app/Service/book.service';
 })
 export class ToolbarComponent implements OnInit {
 
-  bookName: string;
- length : any;
- @Input() output : any;
- @Input() function : any;
-  constructor( private service : BookService, ) { }
+  @Output() toggleEvent = new EventEmitter<boolean>();
 
-  ngOnInit(): void {
-    this.length  = sessionStorage.length;
+
+  opened = false;
+
+
+
+
+  name: any;
+  id: any;
+  isUser = false;
+  isSeller = false;
+  isAdmin = false;
+  role: string;
+  length: any;
+  bookName: string;
+  totalItem;
+  isbudget = false;
+  isLogin = false;
+ @Input() output: any;
+ @Input() function: any;
+  constructor( private service: BookService,
+               private token: TokenService,
+               private route: Router,
+               private cartService: CartService,
+               private wishlistService:WishlistService,
+               private matSnackBar:MatSnackBar
+    ) { }
+
+  ontoggel(input: any) {
+    console.log('input' + input);
+    this.toggleEvent.emit(input);
+    this.opened = !this.opened;
+  }
+
+  ngOnInit(){
+    this.wishlistService.autoRefresh$.subscribe(()=>{
+          
+      this. getWishlistCount();
+    }
+  
+    );
+    this. getWishlistCount();
     
+    this.cartService.autoRefresh$.subscribe(() => {
+      this.getCartItemCount();
+
+    });
+    
+    this.getCartItemCount();
+    this.name = localStorage.getItem('Name');
+    this.role = localStorage.getItem('role');
+    console.log('role check toolbar', this.role);
+    if (this.role === 'admin') {
+     this.isAdmin = true;
+     this.isLogin = true;
+   }
+    if (this.role === 'seller') {
+     this.isSeller = true;
+     this.isLogin = true;
+   }
+    if (this.role === 'user') {
+     this.isUser = true;
+     this.isLogin = true;
+     console.log('is user ', this.isUser);
+   }
+  }
+
+  getCartItemCount() {
+    this.cartService.getCartItemCount().subscribe((response: any) => {
+      this.length = response.obj;
+      console.log('total number of itemes are' + response.obj);
+     });
   }
   bookSearch() {
     // console.log(this.bookName);
     this.service.setSearchBookData(this.bookName);
   }
-
-
-
+  logout(event: MouseEvent) {
+    console.log('loggout function called');
+    event.preventDefault();
+    this.token.remove();
+    this.token.logedIn(false);
+    this.route.navigateByUrl('/login');
+  }
   getUpdatedNotes(event) {
-this.ngOnInit();
-}
+  this.ngOnInit();
+  }
 
+
+  wishlistLength:number
+  getWishlistCount() {
+    this.wishlistService.getWishlistCount().subscribe((response: any) => {
+      this.wishlistLength = response.obj;
+      console.log('total number wishBook are' + response.obj);
+     });
+  }
+
+
+
+ 
 }
