@@ -1,6 +1,6 @@
 <mat-toolbar style="background-color: rgba(131, 4, 4, 0.829);" fxLayout="row" xLayoutAlign="space-between center" fullscreen>
   <span *ngIf="isAdmin || isSeller">
-    <button  mat-icon-button (click)="ontoggel(opened)" class="menu">
+    <button id="menuBtn" mat-icon-button (click)="ontoggel(opened)" class="menu">
 
       <mat-icon matTooltip="Main menu">menu</mat-icon>
     </button>
@@ -30,6 +30,7 @@
     >
   </button>
     <input type="text"
+      id="search"
       class="input"
       placeholder="Search"
       [(ngModel)]="bookName"

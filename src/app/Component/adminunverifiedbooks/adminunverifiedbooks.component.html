@@ -36,10 +36,10 @@
                 <!-- </div> -->
 
                 <div fxLayout="row wrap" fxLayoutAlign="end end">
-                    <button mat-raised-button class="button" (click)="approveBooks(book.bookId,'approved')">
+                    <button  id="approveBtn" mat-raised-button class="button" (click)="approveBooks(book.bookId,'approved')">
               APPROVE
             </button>
-                    <button mat-raised-button class="button" style="background-color: #f44336;" (click)="rejectBooks(book.bookId,'rejected')">
+                    <button id="rejectBtn" mat-raised-button class="button" style="background-color: #f44336;" (click)="rejectBooks(book.bookId,'rejected')">
               REJECT
             </button>
 
