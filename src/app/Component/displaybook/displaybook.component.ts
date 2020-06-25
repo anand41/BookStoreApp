@@ -177,7 +177,7 @@ handleWishResponse(wishdata: any) {
         });
         this.route.navigateByUrl('login');
       }
-      sessionStorage.setItem(bookId, bookId);
+      // sessionStorage.setItem(bookId, bookId);
       this.wishlistService.addToWishlist(bookId).subscribe(
         wishdata => this.handleWishResponse(wishdata),
         error => this.handleError(error)

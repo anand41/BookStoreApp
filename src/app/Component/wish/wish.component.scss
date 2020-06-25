@@ -58,17 +58,30 @@
   border: 1px solid #9d9d9d;
   border-radius: 3px;
 }
-.button {
+
+button {
   font-size: 17px;
   margin-left: 74%;
+  margin-left: auto;
   margin-bottom: 6%;
   margin-top: -49px;
   text-align: center;
   color: white;
   background-color: #a03037;
-
   //margin-left: 185px;
 }
+
+.button2 {
+  font-size: 15px;
+  margin-left: 62%;
+  margin-bottom: 6%;
+  margin-top: -49px;
+  text-align: center;
+  color: white;
+  background-color: #a03037;
+  //margin-left: 185px;
+}
+
 .bookimg {
   top: 192px;
   left: 213px;
@@ -109,5 +122,4 @@
     margin-right: 8%;
   }
 }
-
 
