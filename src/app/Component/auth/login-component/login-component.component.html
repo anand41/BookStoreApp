@@ -41,14 +41,16 @@
             <div class="text-left">
                 <h4>Login As</h4>
                 <mat-radio-group aria-label="Select an option" [(ngModel)]="form.role" name="role">
+
                     <mat-radio-button id="userRadioBtn" value="user" required="required"> User </mat-radio-button> &nbsp;
                     <mat-radio-button id="sellerRadioBtn" value="seller" required="required">Seller </mat-radio-button> &nbsp;
                     <mat-radio-button id="adminRadioBtn" value="admin" required="required"> Admin </mat-radio-button>
+
                 </mat-radio-group>
             </div>
             <br>
             <div fxFlexAlign="end">
-                <button mat-raised-buttontype="submit" style="
+                <button id="submit" mat-raised-buttontype="submit" style="
             background-color: #a03037;
             border-radius: 5px;
             text-decoration-color:#FFFFFF;
