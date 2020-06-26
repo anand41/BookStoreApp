@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BookModule } from 'src/app/Model/book/book.module';
-import { ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
+import { ActivatedRouteSnapshot, ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BookService } from 'src/app/Service/book.service';
 
@@ -14,7 +14,8 @@ export class GiverateComponent implements OnInit {
   constructor(
     private snackBar: MatSnackBar,
     private bookService: BookService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
   ) {}
   // tslint:disable-next-line: no-input-rename
   @Input('starCount')  starCount = 5;
@@ -89,6 +90,7 @@ export class GiverateComponent implements OnInit {
       .subscribe((response: any) => {
         console.log('submit rate response:', response);
         this.snackBar.open(response.response, 'ok', { duration: 2000 });
+        this.router.navigateByUrl('books');
       },
       (error: any) => {
         this.snackBar.open(error.error.message, 'ok', { duration: 2000 });

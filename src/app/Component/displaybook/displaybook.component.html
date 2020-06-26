@@ -20,19 +20,25 @@
             </div>
         </div>
         <br>
-
         <div class="list-books">
 
             <div *ngFor="let book of bookList| booksearchpipe:bookSearch">
 
-                <mat-card style="height: 22.5em; width: 220px;  margin-right: 40px;">
+                <mat-card style="height: 22.5em; width: 220px;  margin-right: 40px;" class="tooltip1">
                     <mat-card-title matTooltip="Book Image" (click)="Deatails(book.bookId)">
                         <img src="assets\bookimage\{{book.image}}" style="height: 150px; width: 90px;
                       margin-left: 55px; margin-right: 55px; padding-top: 20px; padding-bottom: 20px; " />
                     </mat-card-title>
-                    <mat-card-content style="width: 17em; ">
+                    <mat-card-content style="width: 16em; ">
                         <div class="out-of-stock " *ngIf="!book.noOfBooks ">Out Of stock</div>
                         <div class="bookname ">{{ book.bookName }}</div>
+
+
+                        <span class="tooltiptext">
+                          <h2 style="text-align: left; padding-left: 10px;"> Details</h2>
+                          {{ book.bookDetails }}
+                        </span>
+
                         <div class="authorname ">by {{ book.authorName }}</div>
                         <div class="price ">Rs. {{ book.price }}</div>
                         <div class="availablity " style="color: rgb(163, 43, 6); " *ngIf="book.noOfBooks < 5 && book.noOfBooks; else elsecondition ">

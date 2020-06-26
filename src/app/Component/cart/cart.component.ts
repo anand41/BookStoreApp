@@ -77,8 +77,6 @@ addre: Address = new Address();
     this.getCartItemCount();
     this. booksFromCart();
   });
-   this.Name.setValue(localStorage.getItem('Name'));
-   this.phoneNumber.setValue(localStorage.getItem('phone'));
    this.fun(this.type);
    this.getCartItemCount();
    this. booksFromCart();
@@ -216,6 +214,9 @@ for (let i = 0; i < sessionStorage.length; i++) {
 }
  fun(type) {
   this.selectedtype = type;
+  this.addre.name = (localStorage.getItem('Name'));
+  this.addre.phoneNumber = (localStorage.getItem('phone'));
+
   this.adressId = null;
   this.setAddresToInput(this.addre);
   this.getUserAdress();
@@ -262,6 +263,7 @@ OnRegisterSubmit() {
     console.log('adress is going to upadted is ' + this.addre);
     this.userService.addAdress(this.addre).subscribe((Response) => {
     console.log('adress address', Response);
+    window.location.reload();
   });
  } else {
   this.addre.addressType = this.selectedtype;

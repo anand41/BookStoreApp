@@ -16,6 +16,7 @@ import { OrderstatusComponent } from './Component/orderstatus/orderstatus.compon
 import { RatedbooksComponent } from './Component/ratedbooks/ratedbooks.component';
 import { BookreviewsComponent } from './Component/bookreviews/bookreviews.component';
 import { WishComponent } from './Component/wish/wish.component';
+import { PagenotfoundComponent } from './component/pagenotfound/pagenotfound.component';
 
 const routes: Routes = [
 
@@ -26,7 +27,7 @@ const routes: Routes = [
   {path: 'books', component: DashboardComponent},
   {path: 'cart', component: CartComponent},
   {path: 'greeting', component: OrdergreetingComponent},
-  {path: 'update-password', component: ResetPasswordComponent},
+  {path: 'update-password/:token', component: ResetPasswordComponent},
   {path: 'forget-password', component: ForgetPasswordComponent},
   {path: 'login', component: LoginComponentComponent},
   {path: 'seller', component: SellerComponent},
@@ -44,6 +45,7 @@ const routes: Routes = [
   {path: 'books/orders', component: OrderstatusComponent},
   {path: 'ratedbooks', component: RatedbooksComponent},
   {path: 'bookreviews', component: BookreviewsComponent},
+  {path: '**', component: PagenotfoundComponent},
 ];
 
 @NgModule({

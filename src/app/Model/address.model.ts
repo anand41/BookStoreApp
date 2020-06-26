@@ -8,7 +8,7 @@ export class Address {
   locality: string;
   city: string;
   pincode: number;
-  phoneNumber: number;
+  phoneNumber: string;
   state: string;
   addressType: any;
 }

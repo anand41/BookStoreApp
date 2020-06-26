@@ -32,6 +32,21 @@ export class SellerComponent implements OnInit {
   
   ngOnInit(): void {
     this.service.autoRefresh$.subscribe(() => {
+      this._route.queryParams.subscribe
+    (params=>
+      {this.param=params['book'];
+      if (this.param == "sellerbook") 
+      {
+      this.sellerBooks=true;
+      this.orderBooks=false
+
+      }
+      if(this.param == "order")
+      {
+        this.sellerBooks=false;
+        this.orderBooks=true;
+      }
+    });
        this.getallBooks();
     });
 

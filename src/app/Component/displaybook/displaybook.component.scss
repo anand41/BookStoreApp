@@ -59,7 +59,7 @@ mat-card-title {
 .mat-card-title.mat-card-title {
     display: flex;
     height: 171px auto;
-    width: 233px;
+    width: 219px;
     align-items: center;
     align-content: center;
 }
@@ -224,8 +224,9 @@ mat-card-title {
     text-decoration: none;
 }
 
-*:focus {
-    outline: 0 !important;
+mat-card:hover {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+    color: none;
 }
 
 .pagination a.active {
@@ -240,4 +241,40 @@ mat-card-title {
     background: #FFFFFF 0% 0% no-repeat padding-box;
     border: 1px solid #E2E2E2;
     opacity: 1;
+}
+
+.tooltip1 {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip1 .tooltiptext {
+    visibility: hidden;
+    width: 300px;
+    background-color: rgb(250, 246, 246);
+    color: rgb(182, 165, 165);
+    text-align: center;
+    border-radius: 6px;
+    padding: 2px 0;
+    padding-left: 10px;
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    left: 110%;
+    padding-bottom: 20%;
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-top: 10%;
+}
+
+.tooltip1 .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+}
+
+.tooltip1:hover .tooltiptext {
+    visibility: visible;
 }

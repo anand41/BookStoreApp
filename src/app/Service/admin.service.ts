@@ -10,7 +10,7 @@ import { tap } from 'rxjs/operators';
 })
 export class AdminService {
 
-  constructor(private http:HttpClient,private httpService:HttpserviceService) { }
+  constructor(private http: HttpClient, private httpService: HttpserviceService) { }
 
   private adminUrl = environment.adminUrl;
   private approveBook = environment.approveBook;
@@ -23,12 +23,13 @@ export class AdminService {
 
   private getallOrderedBooks = environment.getallOrderedBooks;
   private changeOrderstatus = environment.changeOrderstatus;
+  // tslint:disable-next-line: variable-name
   private _autoRefresh$ = new Subject();
 
   get autoRefresh$() {
     return this._autoRefresh$;
   }
-  
+
   // private token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpZCI6M30.rzol7EjZW2exz-O-d40T3FvIem3Lk8kYGTngic_YHHX2_T7c4zMCcjDfzMXtOHehZkP8cW7TDK_tWELwWkkryQ";
 
 
@@ -40,55 +41,56 @@ export class AdminService {
     return this.subject;
   }
 
-  private httpOptions={
-    headers: new HttpHeaders ({'content-type':'application/json' ,token: this.token})
+  private httpOptions = {
+    headers: new HttpHeaders ({'content-type': 'application/json' , token: this.token})
     };
 
-
-
-    getUnverifiedBooks(status:string){
+    getUnverifiedBooks(status: string) {
       // status='Onhold';
-      console.log("unverified books "+this.adminUrl+this.unVerifiedBooks+"?status="+status);
-      return this.httpService.get(this.adminUrl+this.unVerifiedBooks+"?status="+status,this.httpOptions);
+      console.log('unverified books ' + this.adminUrl + this.unVerifiedBooks + '?status=' + status);
+      return this.httpService.get(this.adminUrl + this.unVerifiedBooks + '?status=' + status, this.httpOptions);
     }
 
-    getRejectedBooks(){
+    getRejectedBooks() {
 
-      return this.httpService.get(this.adminUrl+this.rejectedBooks,this.httpOptions);
+      return this.httpService.get(this.adminUrl + this.rejectedBooks, this.httpOptions);
     }
 
-    getApprovedBooks(status:string){
+    getApprovedBooks(status: string) {
 
-      return this.httpService.get(this.adminUrl+this.approvedBooks+"?status="+status,this.httpOptions);
+      return this.httpService.get(this.adminUrl + this.approvedBooks + '?status=' + status, this.httpOptions);
     }
 
-    approveBooks(noteId:number, status:string):Observable<any>{
+    approveBooks(noteId: number, status: string): Observable<any> {
 
-      return this.httpService.put(this.adminUrl+this.approveBook+noteId+"?"+"status="+status,"",this.httpOptions).pipe(tap(()=>{ this.subject.next();}));
+      // tslint:disable-next-line: max-line-length
+      return this.httpService.put(this.adminUrl + this.approveBook + noteId + '?' + 'status=' + status, '', this.httpOptions).pipe(tap(() => { this.subject.next(); }));
     }
 
-    rejectBooks(noteId:number, status:string):Observable<any>{
+    rejectBooks(noteId: number, status: string): Observable<any> {
 
-      return this.httpService.put(this.adminUrl+this.rejectBook+noteId+"?"+"status="+status,"",this.httpOptions).pipe(tap(()=>{ this.subject.next();}));
+      // tslint:disable-next-line: max-line-length
+      return this.httpService.put(this.adminUrl + this.rejectBook + noteId + '?' + 'status=' + status, '', this.httpOptions).pipe(tap(() => { this.subject.next(); }));
     }
 
-    getAllOrderedBooks():Observable<any>{
-      console.log("order status url");
-      console.log(this.httpService.get(this.adminUrl+this.getallOrderedBooks,this.httpOptions));
-      return this.httpService.get(this.adminUrl+this.getallOrderedBooks,{});
+    getAllOrderedBooks(): Observable<any> {
+      console.log('order status url');
+      console.log(this.httpService.get(this.adminUrl + this.getallOrderedBooks, this.httpOptions));
+      return this.httpService.get(this.adminUrl + this.getallOrderedBooks, {});
      }
 
 
 
-     updateOrderStatus(orderId:any,status:any):Observable<any>{
+     updateOrderStatus(orderId: any, status: any): Observable<any> {
       //  var y:number =+orderId;
-       console.log("url "+this.adminUrl+this.changeOrderstatus+"?orderId="+orderId+"&status="+status);
-       
+       console.log('url ' + this.adminUrl + this.changeOrderstatus + '?orderId=' + orderId + '&status=' + status);
+
 
       // return this.httpService.put(this.adminUrl+this.changeOrderstatus+"?orderId="+orderId+"&status="+status,"",this.httpOptions);
 
-      return this.httpService
-                             .put(this.adminUrl+this.changeOrderstatus+"?orderId="+orderId+"&status="+status,"",this.httpOptions)
+       return this.httpService
+                             // tslint:disable-next-line: max-line-length
+                             .put(this.adminUrl + this.changeOrderstatus + '?orderId=' + orderId + '&status=' + status, '', this.httpOptions);
                             //  .pipe(
                             //   tap(() => {
                             //     this._autoRefresh$.next();
@@ -97,8 +99,7 @@ export class AdminService {
 
       // http://localhost:8080/bookstore/orderStatusByAdmin?orderId=583785&status=in%20progress
      }
-
   //    @GetMapping(value = "bookstore/orderedbooks/{token}")
-	// public ResponseEntity<Response> getOrderlist(@PathVariable("token") String token) throws Exception {
-	
-}
+ // public ResponseEntity<Response> getOrderlist(@PathVariable("token") String token) throws Exception {
+
+  }
